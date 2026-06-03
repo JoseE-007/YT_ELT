@@ -73,7 +73,6 @@ def get_videoids(playlistId):
         raise e
 
 
-
 def batch_list(video_id_lst, batch_size):
     for video_id in range(0, len(video_id_lst), batch_size):
         yield video_id_lst[video_id: video_id + batch_size]
