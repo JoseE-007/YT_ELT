@@ -1,15 +1,17 @@
 import requests 
 import json
 from datetime import date 
-import os 
-from dotenv import load_dotenv
+
+# import os 
+# from dotenv import load_dotenv
+# load_dotenv(dotenv_path="./.env")
 
 from airflow.decorators import task 
+from airflow.models import Variable
 
-load_dotenv(dotenv_path="./.env")
 
-API_KEY = os.getenv("API_KEY")
-CHANNEL_HANDLE = "MrBeast"
+API_KEY = Variable.get("API_KEY")
+CHANNEL_HANDLE = Variable.get("CHANNEL_HANDLE")
 maxResult = 50
 
 
