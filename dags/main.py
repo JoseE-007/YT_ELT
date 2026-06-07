@@ -6,7 +6,7 @@ from api.video_stats import get_playlist_id, get_videoids, extract_video_data, s
 from datawarehouse.dwh import staging_table, core_table
 
 # Define the local timezone 
-local_tz = pendulum.timezone("America/Edmonton")
+local_tz = pendulum.timezone("America/Regina")
 
 # Default Args 
 default_args = { 

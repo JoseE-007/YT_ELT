@@ -1,6 +1,7 @@
 import requests 
 import json
 from datetime import date 
+import pendulum
 
 # import os 
 # from dotenv import load_dotenv
@@ -127,7 +128,8 @@ def extract_video_data(video_ids):
 
 @task   
 def save_to_json(extracted_data): 
-    file_path = f"./data/YT_data_{date.today()}.json"
+    local_date = pendulum.now("America/Regina").date()
+    file_path = f"./data/YT_data_{local_date}.json"
 
     with open(file_path, "w", encoding="utf-8") as json_outfile: 
         json.dump(extracted_data, json_outfile, indent=4, ensure_ascii=False)

@@ -1,13 +1,13 @@
 import json
 from datetime import date 
 import logging 
+import pendulum
 
 logger = logging.getLogger(__name__)
 
 def load_data(): 
-
-    file_path = f"./data/YT_data_{date.today()}.json"
-
+    local_date = pendulum.now("America/Regina").date()
+    file_path = f"./data/YT_data_{local_date}.json"
     try:
         logger.info(f"Processing file: YT_data{date.today()}")
 
