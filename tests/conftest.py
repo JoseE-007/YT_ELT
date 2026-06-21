@@ -5,6 +5,7 @@ from unittest import mock
 from airflow.models import Variable, Connection, DagBag
 
 # pytest -v -s tests/unit_test.py -k 
+# docker exec -it airflow-worker bash 
 
 @pytest.fixture
 def api_key():
