@@ -2,6 +2,7 @@ import requests
 import json
 from datetime import date 
 import pendulum
+import os
 
 # import os 
 # from dotenv import load_dotenv
@@ -72,6 +73,11 @@ def get_videoids(playlistId):
 
             if not pageToken:
                 break
+
+        ci_max_videos = os.getenv("CI_MAX_VIDEOS")
+
+        if ci_max_videos:
+            video_ids = video_ids[:int(ci_max_videos)]
 
         return video_ids
 
