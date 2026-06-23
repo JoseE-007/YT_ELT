@@ -52,6 +52,9 @@ def get_videoids(playlistId):
 
     pageToken = None
 
+    ci_max_videos = os.getenv("CI_MAX_VIDEOS")
+    ci_max_videos = int(ci_max_videos) if ci_max_videos else None
+
     base_url = f"https://youtube.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults={maxResult}&playlistId={playlistId}&key={API_KEY}"
     
     try:
@@ -68,16 +71,13 @@ def get_videoids(playlistId):
             for item in data.get('items', []):
                 video_id = item['contentDetails']['videoId']
                 video_ids.append(video_id) 
+                if ci_max_videos and len(video_ids) >= ci_max_videos:
+                    return video_ids[:ci_max_videos]
             
             pageToken = data.get('nextPageToken')
 
             if not pageToken:
                 break
-
-        ci_max_videos = os.getenv("CI_MAX_VIDEOS")
-
-        if ci_max_videos:
-            video_ids = video_ids[:int(ci_max_videos)]
 
         return video_ids
 
