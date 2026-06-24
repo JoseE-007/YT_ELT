@@ -76,14 +76,14 @@ jobs:
                 dags/**
                 include/**
                 docker-compose.yaml
-        - name: Add swap
-          if: steps.changed-files-tests.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
-          run: |
-            sudo fallocate -l 4G /mnt/swapfile
-            sudo chmod 600 /mnt/swapfile
-            sudo mkswap /mnt/swapfile
-            sudo swapon /mnt/swapfile
-            free -h
+        # - name: Add swap
+        #   if: steps.changed-files-tests.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
+        #   run: |
+        #     sudo fallocate -l 4G /mnt/swapfile
+        #     sudo chmod 600 /mnt/swapfile
+        #     sudo mkswap /mnt/swapfile
+        #     sudo swapon /mnt/swapfile
+        #     free -h
         - name: Set up Docker Compose
           if: steps.changed-files-tests.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
           run: |
