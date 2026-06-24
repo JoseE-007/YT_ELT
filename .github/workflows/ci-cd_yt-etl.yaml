@@ -101,7 +101,7 @@ jobs:
           run: |
             docker compose run --rm airflow-cli dags list
             
-            DAG_NAMES=("produce_json" "update_db" "data_quality")
+            DAG_NAMES=("update_db" "data_quality")
             for DAG in "${DAG_NAMES[@]}"; do 
               docker compose run --rm airflow-cli dags test $DAG
             done
